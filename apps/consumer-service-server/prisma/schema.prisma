@@ -1,0 +1,17 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ProcessedComment {
+  createdAt         DateTime  @default(now())
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  originalCommentId String?
+  processedDate     DateTime?
+  processingStatus  String?
+  updatedAt         DateTime  @updatedAt
+}
